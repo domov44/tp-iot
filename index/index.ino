@@ -1,8 +1,10 @@
 int Led = 26;    // LED on Arduino board
+int score = 0;
 int Shock = 21;  // sensor signal
+int oldVal = LOW;  
 int val;         // numeric variable to store sensor status
 unsigned long lastUpdateTime = 0;
-unsigned long updateInterval = 100; // Interval to update the shock sensor, in milliseconds
+unsigned long updateInterval = 500; // Interval to update the shock sensor, in milliseconds
  
 #include "SevSeg.h"
 SevSeg sevseg;
@@ -28,18 +30,22 @@ void loop() {
     shock(); // appel de la fonction shock pour vérifier le capteur de vibration
   }
  
-  sevseg.setNumber(1234); // Mise à jour de l'affichage directement ici
+  sevseg.setNumber(score); // Mise à jour de l'affichage directement ici
   sevseg.refreshDisplay(); // Mettre à jour l'affichage
 }
  
 void shock() {
   val = digitalRead(Shock);  // read and assign the value of digital interface 3 to val
-  if (val == HIGH)           // when sensor detects a signal, the LED flashes
+  if (val == HIGH && oldVal != HIGH)           // when sensor detects a signal, the LED flashes
   {
+    oldVal = HIGH;
     digitalWrite(Led, HIGH);
-    Serial.println("Im high");
+    score = score+1;
+    Serial.print("Im walking, my steps: ");
+    Serial.println(score);
   } else {
+    oldVal = LOW;
     digitalWrite(Led, LOW);
-    Serial.println("Im low");
+    Serial.println("Im not walking");
   }
 }
