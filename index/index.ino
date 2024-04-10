@@ -1,51 +1,146 @@
-int Led = 26;    // LED on Arduino board
+#include <WiFi.h>
+#include <WebServer.h>
+#include <WebSocketsServer.h>
+
+const char* ssid = "Babasque";
+const char* password = "motdepasse";
+
+WebServer server(80);
+WebSocketsServer webSocket = WebSocketsServer(81);
+
+int Led = 26;
 int score = 0;
-int Shock = 21;  // sensor signal
-int oldVal = LOW;  
-int val;         // numeric variable to store sensor status
+int Shock = 21;
+int oldVal = LOW;
+int val; 
 unsigned long lastUpdateTime = 0;
-unsigned long updateInterval = 500; // Interval to update the shock sensor, in milliseconds
- 
+unsigned long updateInterval = 500;
+
 #include "SevSeg.h"
 SevSeg sevseg;
- 
+
+void webSocketEvent(uint8_t num, WStype_t type, uint8_t * payload, size_t length) {
+  switch (type) {
+    case WStype_DISCONNECTED: {
+      Serial.printf("[%u] Déconnecté!\n", num);
+      break;
+    }
+    case WStype_CONNECTED: {
+      IPAddress ip = webSocket.remoteIP(num);
+      Serial.printf("[%u] Connecté à: %d.%d.%d.%d\n", num, ip[0], ip[1], ip[2], ip[3]);
+      break;
+    }
+    case WStype_TEXT: {
+      String message = String((char *)payload);
+      Serial.printf("[%u] Reçu un message texte: %s\n", num, message.c_str());
+      break;
+    }
+    case WStype_BIN: {
+      Serial.printf("[%u] Reçu un message binaire de longueur: %u\n", num, length);
+      break;
+    }
+    default:
+      break;
+  }
+}
+
 void setup() {
-  pinMode(Led, OUTPUT);   // define LED as output interface
-  pinMode(Shock, INPUT);  // define input for sensor signal
+  pinMode(Led, OUTPUT);
+  pinMode(Shock, INPUT);
   Serial.begin(9600);
- 
+
   byte numDigits = 4;
   byte digitPins[] = { 32, 13, 14, 15 };
   byte segmentPins[] = { 33, 25, 22, 19, 18, 12, 23, 5 };
   bool updateWithDelays = false;
   sevseg.begin(COMMON_ANODE, numDigits, digitPins, segmentPins, updateWithDelays);
   sevseg.setBrightness(100);
-}
- 
-void loop() {
-  // Check if it's time to update the shock sensor
-  if (millis() - lastUpdateTime >= updateInterval) {
-    lastUpdateTime = millis(); // Update the last update time
- 
-    shock(); // appel de la fonction shock pour vérifier le capteur de vibration
+
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(1000);
+    Serial.println("Connecting to WiFi...");
   }
- 
-  sevseg.setNumber(score); // Mise à jour de l'affichage directement ici
-  sevseg.refreshDisplay(); // Mettre à jour l'affichage
+  Serial.println("Connected to WiFi");
+
+  webSocket.begin();
+  webSocket.onEvent(webSocketEvent);
+
+  server.on("/", HTTP_GET, []() {
+    String html = "<!DOCTYPE html>";
+    html += "<html>";
+    html += "<head>";
+    html += "<title>S&eacute;rie d'abdominaux</title>";
+    html += "<style>";
+    html += "body {";
+    html += "font-family: Arial, sans-serif;";
+    html += "background-color: #f0f0f0;";
+    html += "text-align: center;";
+    html += "}";
+    html += ".container {";
+    html += "margin-top: 50px;";
+    html += "padding: 20px;";
+    html += "background-color: #fff;";
+    html += "border-radius: 10px;";
+    html += "box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);";
+    html += "}";
+    html += "#score {";
+    html += "font-size: 40px;";
+    html += "font-weight: bold;";
+    html += "color: #27ae60;";
+    html += "}";
+    html += "</style>";
+    html += "</head>";
+    html += "<body>";
+    html += "<div class='container'>";
+    html += "<h1>S&eacute;rie d'abdominaux</h1>";
+    html += "<p>Positionnez vous et suivez votre nombre d'abdominaux en temps r&eacute;el</p>";
+    html += "<div id='score'>" + String(score) + "</div>";
+    html += "</div>";
+    html += "<script type='text/javascript'>var socket = new WebSocket('ws://' + window.location.hostname + ':81/');socket.onmessage = function(event) {document.getElementById('score').innerHTML = event.data;};</script>";
+    html += "</body>";
+    html += "</html>";
+    server.send(200, "text/html", html);
+  });
+  server.begin();
+
+  Serial.print("Adresse IP: ");
+  Serial.println(WiFi.localIP());
 }
- 
+
+void loop() {
+  server.handleClient(); 
+  webSocket.loop(); 
+
+  if (millis() - lastUpdateTime >= updateInterval) {
+    lastUpdateTime = millis();
+
+    shock();
+  }
+
+  sevseg.setNumber(score);
+  sevseg.refreshDisplay();
+}
+
 void shock() {
-  val = digitalRead(Shock);  // read and assign the value of digital interface 3 to val
-  if (val == HIGH && oldVal != HIGH)           // when sensor detects a signal, the LED flashes
+  val = digitalRead(Shock);
+  if (val == HIGH)
   {
-    oldVal = HIGH;
+    if(oldVal != HIGH) {
+      score = score + 1;
+      oldVal = HIGH;
+    }
     digitalWrite(Led, HIGH);
-    score = score+1;
-    Serial.print("Im walking, my steps: ");
+    
+    Serial.print("Mes d'abdos réalisés: ");
     Serial.println(score);
+
+    if (score > 0) {
+      webSocket.broadcastTXT("Vous avez fait " + String(score) + " abdominaux");
+    }
   } else {
     oldVal = LOW;
     digitalWrite(Led, LOW);
-    Serial.println("Im not walking");
+    Serial.println("Je suis au repos");
   }
 }
