@@ -101,7 +101,7 @@ void setup() {
     html += "<div class='container'>";
     html += "<h1>S&eacute;rie d'abdominaux</h1>";
     html += "<p>Positionnez vous et suivez votre nombre d'abdominaux en temps r&eacute;el</p>";
-    html += "<div id='score'>" + String(score) + "</div>";
+    html += "<div id='score'>Vous avez fait " + String(score) + " abdominaux</div>";
     html += "</div>";
     html += "<script type='text/javascript'>var socket = new WebSocket('ws://' + window.location.hostname + ':81/');socket.onmessage = function(event) {document.getElementById('score').innerHTML = event.data;};</script>";
     html += "</body>";
@@ -124,6 +124,7 @@ void loop() {
 
     if (etat == HIGH) {
       score = 0;
+      webSocket.broadcastTXT("Vous avez fait " + String(score) + " abdominaux");
     }
     shock();
   }
