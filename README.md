@@ -13,6 +13,9 @@
       <li>
       <a href="#prerequis">Prérequis</a>
       </li>
+      <li>
+      <a href="#montage">Montage</a>
+      </li>
         <li>
          <a href="#lancer-le-prototype">Lancer le prototype</a>
       </li>
@@ -78,6 +81,9 @@ https://www.arduino.cc/en/software
 
 <p align="right">(<a href="#readme-top">revenir en haut</a>)</p>
 
+### Montage
+![alt text](image-1.png)
+![alt text](image-2.png)
 
 ## Lancer le prototype
 
