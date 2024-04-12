@@ -9,7 +9,6 @@
   <ol>
     <li>
       <a href="#materiaux">Matériaux et références</a>
-      <ul>
       <li>
       <a href="#prerequis">Prérequis</a>
       </li>
@@ -19,7 +18,6 @@
         <li>
          <a href="#lancer-le-prototype">Lancer le prototype</a>
       </li>
-      </ul>
     </li>
     <li>
       <a href="#commencer-une-feature">Commencer une feature</a>
