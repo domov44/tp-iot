@@ -34,21 +34,36 @@
 ## Materiaux
 
 1. mircro controlleur x1
-url : https://fr.aliexpress.com/item/32806450471.html
+url :
+```sh
+https://fr.aliexpress.com/item/32806450471.html
+```
 ref : ESP-32S ESP-WROOM-32 Development Board 38P NodeMCU
-schemas : https://www.upesy.fr/blogs/tutorials/esp32-quickstart-installation-programming-guide
+schemas :
+```sh
+https://www.upesy.fr/blogs/tutorials/esp32-quickstart-installation-programming-guide
+```
 
 2. capteur 1 (celui utilisé) x1
 ref : KY-002 Shock Sensor Module
-url : https://sensorkit.joy-it.net/en/sensors/ky-002
+url :
+```sh
+https://sensorkit.joy-it.net/en/sensors/ky-002
+```
 
 3. capteur 2 (testé mais qui ne marche pas pour ce projet) 
 ref : KY-031 Hit-Knock Sensor Module
-url : https://arduinomodules.info/ky-031-knock-sensor-module/
+url :
+```sh
+https://arduinomodules.info/ky-031-knock-sensor-module/
+```
 
 4. Ecran 4 chiffres x1
 ref : P3C2-3
-url : https://www.moussasoft.com/produit/afficheur-7-segments-4-chiffres/
+url :
+```sh
+https://www.moussasoft.com/produit/afficheur-7-segments-4-chiffres/
+```
 
 5. Bouton poussoir pour circuit imprimé x1
 ref : Sans marque/Générique
