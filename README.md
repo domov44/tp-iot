@@ -72,7 +72,7 @@ ref : Sans marque/Générique <br>
 
 ## Prerequis
 
-1. Assurez-vous d'avoir installé Arduino ide, téléchargez le si besoin :
+1. Assurez-vous d'avoir installé Arduino ide, téléchargez le si besoin : <br>
 https://www.arduino.cc/en/software
 
 2. Avoir à disposition une connexion wifi ou un partage de connexion
@@ -91,22 +91,16 @@ https://www.arduino.cc/en/software
 
 2. Branchez le à votre pc via le cable USB C
 
-3. Installez le pilote 
-```sh
+3. Installez le pilote <br>
 https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers?tab=downloads
-```
 
-3. Lancez arduino IDE, ouvrez file > preferences en haut à gauche, puis dans "Additional boards manager URL's" ajoutez 
-```sh
+3. Lancez arduino IDE, ouvrez file > preferences en haut à gauche, puis dans "Additional boards manager URL's" ajoutez <br>
 https://dl.espressif.com/dl/package_esp32_index.json
-```
 
 Séparez d'une virgule avec les autres urls si besoin.
 
-4. Téléchargez le zip de SevSeg 
-```sh
+4. Téléchargez le zip de SevSeg <br>
 https://www.arduino.cc/reference/en/libraries/sevseg/
-```
 
 5. Ensuite installez le zip depuis l'IDE > Sketch > Include Library > Add .zip Library ...
 
