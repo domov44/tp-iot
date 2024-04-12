@@ -19,6 +19,7 @@ const unsigned long updateInterval = 500;
 
 SevSeg sevseg;
 
+// Websocket 
 void webSocketEvent(uint8_t num, WStype_t type, uint8_t* payload, size_t length) {
   switch (type) {
     case WStype_DISCONNECTED:
@@ -44,6 +45,7 @@ void webSocketEvent(uint8_t num, WStype_t type, uint8_t* payload, size_t length)
   }
 }
 
+// Se connecter à la wifi
 void setupWiFi() {
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
@@ -53,6 +55,7 @@ void setupWiFi() {
   Serial.println("Connected to WiFi");
 }
 
+// Setup de l'écran
 void setupSevSeg() {
   byte numDigits = 4;
   byte digitPins[] = { 32, 13, 14, 15 };
@@ -62,6 +65,7 @@ void setupSevSeg() {
   sevseg.setBrightness(100);
 }
 
+// Setup du serveur et du rendu HTML
 void setupServer() {
   server.on("/", HTTP_GET, []() {
     String html = "<!DOCTYPE html><html><head><title>S&eacute;rie d'abdominaux</title><style>body {font-family: Arial, sans-serif;background-color: #f0f0f0;text-align: center;}.container {margin-top: 50px;padding: 20px;background-color: #fff;border-radius: 10px;box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);}#score {font-size: 40px;font-weight: bold;color: #27ae60;}</style></head><body><div class='container'><h1>S&eacute;rie d'abdominaux</h1><p>Positionnez vous et suivez votre nombre d'abdominaux en temps r&eacute;el</p><div id='score'>Vous avez fait " + String(score) + " abdominaux</div></div><script type='text/javascript'>var socket = new WebSocket('ws://' + window.location.hostname + ':81/');socket.onmessage = function(event) {document.getElementById('score').innerHTML = event.data;};</script></body></html>";
