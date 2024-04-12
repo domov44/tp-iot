@@ -38,32 +38,32 @@ url : https://fr.aliexpress.com/item/32806450471.html <br>
 ref : ESP-32S ESP-WROOM-32 Development Board 38P NodeMCU <br>
 schemas : https://www.upesy.fr/blogs/tutorials/esp32-quickstart-installation-programming-guide <br>
 
-2. capteur 1 (celui utilisé) x1
-ref : KY-002 Shock Sensor Module
-url : https://sensorkit.joy-it.net/en/sensors/ky-002
+2. capteur 1 (celui utilisé) x1 <br>
+ref : KY-002 Shock Sensor Module <br>
+url : https://sensorkit.joy-it.net/en/sensors/ky-002 <br>
 
-3. capteur 2 (testé mais qui ne marche pas pour ce projet) 
-ref : KY-031 Hit-Knock Sensor Module
-url : https://arduinomodules.info/ky-031-knock-sensor-module/
+3. capteur 2 (testé mais qui ne marche pas pour ce projet) <br>
+ref : KY-031 Hit-Knock Sensor Module <br>
+url : https://arduinomodules.info/ky-031-knock-sensor-module/ <br>
 
-4. Ecran 4 chiffres x1
-ref : P3C2-3
-url : https://www.moussasoft.com/produit/afficheur-7-segments-4-chiffres/
+4. Ecran 4 chiffres x1 <br>
+ref : P3C2-3 <br>
+url : https://www.moussasoft.com/produit/afficheur-7-segments-4-chiffres/ <br>
 
-5. Bouton poussoir pour circuit imprimé x1
-ref : Sans marque/Générique
+5. Bouton poussoir pour circuit imprimé x1 <br>
+ref : Sans marque/Générique <br>
 
-6. Résistence 220r x6
-ref : Sans marque/Générique
+6. Résistence 220r x6 <br>
+ref : Sans marque/Générique <br>
 
-7. LED x1
-ref : Sans marque/Générique
+7. LED x1 <br>
+ref : Sans marque/Générique <br>
 
-8. Câbles x22
-ref : Sans marque/Générique
+8. Câbles x22 <br>
+ref : Sans marque/Générique <br>
 
-9. Platine d'expérimentation x1
-ref : Sans marque/Générique
+9. Platine d'expérimentation x1 <br>
+ref : Sans marque/Générique <br>
 
 ![alt text](image.png)
 
