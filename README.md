@@ -114,8 +114,10 @@ https://www.arduino.cc/reference/en/libraries/sevseg/
 
 7. Monter le prototype correctement depuis <a href="#montage">montage</a>
 
-8. Lancer le projet
+8. Lancer le projet en clonant le repo 
+```sh
 git clone https://github.com/domov44/tp-iot
+```
 
 9. Ouvrer le index.ino dans arduino ide
 
