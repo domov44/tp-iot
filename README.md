@@ -30,12 +30,12 @@
 
 ## Materiaux
 
-1. mircro controlleur 
+1. mircro controlleur x1
 url : https://fr.aliexpress.com/item/32806450471.html
 ref : ESP-32S ESP-WROOM-32 Development Board 38P NodeMCU
 schemas : https://www.upesy.fr/blogs/tutorials/esp32-quickstart-installation-programming-guide
 
-2. capteur 1 (celui utilisé)
+2. capteur 1 (celui utilisé) x1
 ref : KY-002 Shock Sensor Module
 url : https://sensorkit.joy-it.net/en/sensors/ky-002
 
@@ -43,12 +43,26 @@ url : https://sensorkit.joy-it.net/en/sensors/ky-002
 ref : KY-031 Hit-Knock Sensor Module
 url : https://arduinomodules.info/ky-031-knock-sensor-module/
 
-4. Ecran 4 chiffres
+4. Ecran 4 chiffres x1
 ref : P3C2-3
 url : https://www.moussasoft.com/produit/afficheur-7-segments-4-chiffres/
 
-5. Bouton poussoir pour circuit imprimé
+5. Bouton poussoir pour circuit imprimé x1
 ref : Sans marque/Générique
+
+6. Résistence 220r x6
+ref : Sans marque/Générique
+
+7. LED x1
+ref : Sans marque/Générique
+
+8. Câbles x22
+ref : Sans marque/Générique
+
+9. Platine d'expérimentation x1
+ref : Sans marque/Générique
+
+![alt text](image.png)
 
 <p align="right">(<a href="#readme-top">revenir en haut</a>)</p>
 
